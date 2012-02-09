@@ -102,7 +102,7 @@ public class Map {
         }
 
         for(int i = 1;i < 8;i++ ) {
-            plots[i][7].id = num;
+            plots[i][28].id = num;
 //System.out.println(plots[i][7].id);
             num++;
         }

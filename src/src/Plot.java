@@ -1,7 +1,5 @@
 package src;
 
-import src.Coordinate;
-
 /**
  * Created by IntelliJ IDEA.
  * User: spring

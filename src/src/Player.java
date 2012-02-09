@@ -1,7 +1,5 @@
 package src;
 
-import src.Coordinate;
-
 import java.util.Random;
 
 /**
