@@ -8,7 +8,7 @@ package src;
  * To change this template use File | Settings | File Templates.
  */
 public class Coordinate {
-          int x;
-          int y;
-          int position;
+         public int x;
+         public int y;
+         public int position;
 }

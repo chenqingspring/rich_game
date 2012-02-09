@@ -27,6 +27,8 @@ public class Player {
 
     public Coordinate coor = new Coordinate();// 玩家上次位置
 
+    public int currentDiceNum;
+
 	//public  int position = 0;
 
     public  int myBuildings[];
@@ -53,7 +55,7 @@ public class Player {
     }
 
 /*掷骰子*/
-   int currentDiceNum;
+
 
     public void roll_the_Dice(){
         Random random = new Random();
@@ -75,9 +77,9 @@ public class Player {
     public void walk(){
 
         int walkDist = currentDiceNum;
-        if(coor.position <= 69)
+        if(coor.position < 69)
             coor.position =  coor.position +  walkDist;
-        else if(coor.position > 69)
+        else if(coor.position >= 69)
             coor.position = 69 - coor.position +  walkDist;
 	}
 
