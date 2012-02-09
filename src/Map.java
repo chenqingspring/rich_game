@@ -7,8 +7,6 @@
  */
 public class Map {
 
-
-
     public  Plot plots[][];// 地块类型
 
     public Map() {
@@ -94,14 +92,11 @@ public class Map {
        /*设置plot的ID*/
 
     public void setID(){
-
         int num = 0;
-
         for(int j = 0;j < 29; j++){
             plots[0][j].id = num;
 //System.out.println(plots[0][j].id);
             num++;
-
         }
 
         for(int i = 1;i < 8;i++ ) {
@@ -154,18 +149,20 @@ public class Map {
 		}
        }
 
+
      public void Render_after_player_walks(Player player){
          player.walk();
         for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 29; j++) {
-				if (plots[i][j].id == player.position){
+				if (plots[i][j].id == player.coor.position){
                         int temp_type =  plots[i][j].type;
+                        player.coor.x = i;
+                        player.coor.y = j;
                         plots[i][j].type = 10;
                         plots[i][j].showstr = player.nameForStort;
                         Render();
                         plots[i][j].type = temp_type;
                         i = 8;j = 29;
-                       
                 }
 			}
 		}

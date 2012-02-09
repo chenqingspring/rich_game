@@ -23,7 +23,9 @@ public class Player {
 
     public int points = 0;  //玩家点数
 
-	public  int position = 0;// 玩家上次位置
+    public Coordinate coor = new Coordinate();// 玩家上次位置
+
+	//public  int position = 0;
 
     public  int myBuildings[];
 
@@ -71,10 +73,10 @@ public class Player {
     public void walk(){
 
         int walkDist = currentDiceNum;
-        if(position <= 69)
-            position =  position +  walkDist;
-        else if(position > 69)
-            position = 69 - position +  walkDist;
+        if(coor.position <= 69)
+            coor.position =  coor.position +  walkDist;
+        else if(coor.position > 69)
+            coor.position = 69 - coor.position +  walkDist;
 	}
 
 

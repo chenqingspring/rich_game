@@ -13,6 +13,10 @@ public class Plot {
 
     public  int area = 0;//地段编号
 
+    public Coordinate coor = new Coordinate();//地段在地图的位置
+
+    public int owner = 0;
+
 	public  int type = 0;// 绘制地图类型
 
 	public  int price = 0;// 地块价格
@@ -28,9 +32,7 @@ public class Plot {
 
     public Plot(){
     }
-
-
-
+    
     public void drawPlot(boolean isEnd){
 
         switch (type) {
