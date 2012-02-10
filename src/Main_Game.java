@@ -82,20 +82,16 @@ public class Main_Game
 
         //player1.diaplay();
             while(true){
-                if(player1.is_Selected == true){
-                    System.out.println(player1.getName() +"->´ıÊäÈëÃüÁî"+ "\t");
+                if(player1.is_Selected == true){                 
                     map.playerWalk(player1);
                 }
                 if(player2.is_Selected == true){
-                    System.out.println(player2.getName() +"->´ıÊäÈëÃüÁî"+ "\t");
                     map.playerWalk(player2);
                 }
                 if(player3.is_Selected == true){
-                    System.out.println(player3.getName() +"->´ıÊäÈëÃüÁî"+ "\t");
                     map.playerWalk(player3);
                 }
                 if(player4.is_Selected == true){
-                    System.out.println(player4.getName() +"->´ıÊäÈëÃüÁî"+ "\t");
                     map.playerWalk(player4);
                 }
             }

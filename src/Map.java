@@ -174,6 +174,10 @@ public class Map {
 
 
     public void playerWalk(Player player){
+
+        boolean flag = true;
+        while(flag){
+        System.out.println(player.getName() +"->待输入命令"+ "\t");
         String s;
         s = input(true);
         if(s.equals("roll")){
@@ -187,9 +191,11 @@ public class Map {
                   plots[player.coor.x][player.coor.y].owner = player.playerNum;//把地归为playerNum所有
                 System.out.println("地块("+ plots[player.coor.x][player.coor.y].id + ")被"+player.getName()+"占有" + "\t");
                 System.out.println("系统扣除"+player.getName()+"相应的资金" + plots[player.coor.x][player.coor.y].price+"元" + "\t");
+                flag = false;
             }
             else if (s.equals("N")){
                  System.out.println(player.getName()+"放弃占有地块（" + plots[player.coor.x][player.coor.y].id+ "）\t");
+                 flag = false;
             } else if (s.equals("quit")){
                   System.out.println("游戏已退出");
                   System.exit(0);
@@ -198,7 +204,12 @@ public class Map {
             }else if (s.equals("quit")){
              System.out.println("游戏已退出");
              System.exit(0);
+            }else if (s.equals("query")){
+             player.diaplay();
+             flag = true;
             }
+
+        }
     }
 
     public static String input(boolean inputstate) {
@@ -214,18 +225,30 @@ public class Map {
 			num1 = br.readLine();
 			if (inputstate) {
 				if (!num1.equals("Y") && !num1.equals("N") && !num1.equals("roll")
-                        && !num1.equals("rich")&& !num1.equals("quit"))
+                        && !num1.equals("rich")&& !num1.equals("quit")&& !num1.equals("query")
+                        || num1.equals("help"))
                    // flag = false;
 					throw new IOException();
 			}
 		} catch (IOException ex) {
 			// 程序IO异常处理
-			System.out.println("对不起，您输入的格式不正确,请重新输入");
+            if(num1.equals("help")){
+                System.out.println("roll           掷骰子命令，行走1~6步。步数由随即算法产生");
+                System.out.println("block n        玩家拥有路障后，可将路障放置到离当前位置前后10步的距离，任一玩家经过路障，都将被拦截。该道具一次有效。n 前后的相对距离，负数表示后方");
+                System.out.println("bomb n         可将路障放置到离当前位置前后10步的距离，任一玩家经过在该位置，将被炸伤，送往医院，住院三天。n 前后的相对距离，负数表示后方");
+                System.out.println("robot          使用该道具，可清扫前方路面上10步以内的其它道具，如炸弹、路障");
+                System.out.println("sell x         出售自己的房产，x 地图上的绝对位置，即地产的编号");
+                System.out.println("sellTool x     出售道具，x 道具编号");
+                System.out.println("query          显示自家资产信息   ");
+                System.out.println("help           查看命令帮助  ");
+                System.out.println("quit           强制退出  ");
+            }
+			else System.out.println("对不起，您输入的格式不正确,请重新输入");
             flag = true;
         	// System.exit(0);
 		}
         if(num1.equals("Y") || num1.equals("N") || num1.equals("roll")
-                        || num1.equals("rich") || num1.equals("quit"))
+                        || num1.equals("rich") || num1.equals("quit")|| num1.equals("query"))
                 flag = false;
            // return num1;
 	  }
