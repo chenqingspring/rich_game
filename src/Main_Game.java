@@ -1,7 +1,7 @@
-
-import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,8 +24,7 @@ public class Main_Game
 
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
         String s;
         map.Init();
         map.Render();
@@ -34,9 +33,54 @@ public class Main_Game
         System.out.println("请输入rich运行游戏"+ "\t");
         s = input(true);
         if(s.equals("rich")){
+          System.out.println("设置玩家初始资金，范围1000～50000（默认10000）"+ "\t");
+          boolean flag1 = true;
+          int totalMoney = 10000;
+          while(flag1){
+          String str = readString6("请输初始资金：");  
+            totalMoney = Integer.parseInt(str);
+            player1.money = totalMoney;
+            player2.money = totalMoney;
+            player3.money = totalMoney;
+            player4.money = totalMoney;
+            if(totalMoney<1000 ||totalMoney>50000){
+                 System.out.println("输入金额不在规定范围，请重新输入!"+ "\t");
+                 flag1 = true;
+
+            }
+              else if(totalMoney>=1000 && totalMoney<=50000)
+                flag1 = false;
+          }
+         System.out.println("请选择2~4位不重复玩家，输入编号即可。"+"\n"+
+                 "(1.钱夫人; 2.阿土伯; 3.孙小美; 4.金贝贝):如输入12"+ "\t");
+
+                String str = readString6("请输玩家编号：");
+
+            int[] intarry=new int[str.length()];
+                  for(int i=0;i<str.length();i++){
+                        intarry[i]=Integer.parseInt(String.valueOf(str.charAt(i)));
+                  }
+                   for(int i=0;i<intarry.length;i++){
+                       if(player1.playerNum == intarry[i]){
+                           player1.is_Selected = true;
+                           System.out.print("钱夫人 ");
+                       }
+                       if(player2.playerNum == intarry[i]){
+                           player2.is_Selected = true;
+                           System.out.print("阿土伯 ");
+                       }
+                       if(player3.playerNum == intarry[i]){
+                           player3.is_Selected = true;
+                             System.out.print("孙小美 ");
+                       }
+                       if(player4.playerNum == intarry[i]){
+                           player4.is_Selected = true;
+                             System.out.print("金贝贝 ");
+                       }
+                   }
+                            System.out.println("被选中");
         //player1.diaplay();
         System.out.println(player1.getName() +"->待输入命令"+ "\t");
-
         s = input(true);
         if(s.equals("roll")){
         player1.roll_the_Dice();
@@ -69,6 +113,24 @@ public class Main_Game
     }
 
 
+    public void playerWalk(Player player){
+
+
+
+    }
+
+
+    /*控制台读入数字的方法*/
+
+    private static String readString6(String prompt) {
+        Console console = System.console();
+        if (console == null) {
+            throw new IllegalStateException("不能使用控制台");
+        }
+        return console.readLine(prompt);
+    } 
+
+    /*控制台读入命令的方法*/
       public static String input(boolean inputstate) {
 		String num1 = null;
         boolean flag = true;
@@ -99,6 +161,4 @@ public class Main_Game
 	  }
             return num1;
     }
-
-
 }

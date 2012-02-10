@@ -20,6 +20,8 @@ public class Player {
     public String nameForStort = "";
 
     public int playerNum = 0;
+
+    public boolean is_Selected = false;
     
 	public int money = 10000;// Íæ¼Ò½ðÇ®
 
