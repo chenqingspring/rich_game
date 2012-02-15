@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="rich_game" default="run" basedir=".">
-    <property name="src" value="src"/>
+    <property name="src"  value="src"/>
     <property name="dest" value="dest"/>
+    <property name="lib"  value="lib"/>
     <property name="rich_game_jar" value="rich_game.jar"/>
+    <path id="lib_classpath">         
+    	     <fileset dir="${lib}">
+    	        <include name="*.jar"/> 
+    	     </fileset>       
+    </path>
     
     <target name="init">
         <mkdir dir="${dest}"/>   
@@ -10,7 +16,8 @@
     
     <target name="compile" depends="init">
         <javac srcdir="${src}" destdir="${dest}" includeantruntime="false">
-        	</javac>
+        	  <classpath refid="lib_classpath"/>
+        </javac>
     </target>
     
     <target name="build" depends="compile">
@@ -22,7 +29,10 @@
     </target>
     
     <target name="run" depends="build">
-        <java classname="Main_Game" classpath = "${rich_game_jar}"/>
+        <java classname="Main_Game" classpath = "${rich_game_jar}">
+           <classpath refid="lib_classpath"/>
+        </java>
+        
     </target>
     
     <target name="clean">
