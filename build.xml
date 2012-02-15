@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="rich_game" default="run" basedir=".">
     <property name="src"  value="src"/>
+    <property name="test" value="test"/>
     <property name="dest" value="dest"/>
     <property name="lib"  value="lib"/>
+    <property name="test.report" value="report"/>
     <property name="rich_game_jar" value="rich_game.jar"/>
+    
+    <property name="report" value="report" />  
+    <property name="report.xml" value="${report}/junit/xml" />  
+    <property name="report.html" value="${report}/junit/html" />  
+
     <path id="lib_classpath">         
     	     <fileset dir="${lib}">
     	        <include name="*.jar"/> 
@@ -20,7 +27,46 @@
         </javac>
     </target>
     
-    <target name="build" depends="compile">
+
+         <target name="junit" depends="compile">
+                 <mkdir dir="${report.xml}" />  
+                 <mkdir dir="${report.html}" />  
+                   <junit printsummary="true">
+
+                            <classpath >
+
+                              <pathelement path="${dest}"/>
+
+                             <fileset dir="${lib}">
+
+                             <include name=".jar"/>
+
+                            </fileset>
+
+                            </classpath>
+
+         <formatter type="xml"/>
+
+
+         <batchtest fork="yes" todir="${report.xml}">
+
+         <fileset dir="${test}">
+
+             <include name="Test**.java"/>     
+
+         </fileset>
+         </batchtest>
+         </junit>
+         
+         <junitreport todir="${report.html}">  
+           <fileset dir="${report.xml}">  
+           <include name="*.xml" />  
+           </fileset>  
+           <report format="frames" todir="${report.html}" />  
+          </junitreport>  
+         </target>
+
+    <target name="build" depends="junit">
         <jar jarfile="${rich_game_jar}" basedir="${dest}">
             <manifest> 
             <attribute name= "Main-class" value= "Main_Game"/> 
