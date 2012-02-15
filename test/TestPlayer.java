@@ -1,6 +1,5 @@
-
-import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
+import org.junit.Test;
 
 import java.awt.*;
 
