@@ -1,5 +1,5 @@
+import java.awt.*;
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -17,10 +17,12 @@ public class Main_Game
 
 	public static Plot plots = new Plot();
 
-    public static Player player1 = new Player("钱夫人","q",1);
-    public static Player player2 = new Player("阿土伯","a",2);
-    public static Player player3 = new Player("孙小美","x",3);
-    public static Player player4 = new Player("金贝贝","j",4);
+    public static ColorOutput cop = new ColorOutput();
+
+    public static Player player1 = new Player("钱夫人","q",1,Color.red);
+    public static Player player2 = new Player("阿土伯","a",2,Color.green);
+    public static Player player3 = new Player("孙小美","x",3,Color.blue);
+    public static Player player4 = new Player("金贝贝","j",4,Color.yellow);
 
 
 
@@ -37,7 +39,8 @@ public class Main_Game
           boolean flag1 = true;
           int totalMoney = 10000;
           while(flag1){
-          String str = readString6("请输初始资金：");  
+          System.out.println("请输初始资金：");
+          String str = readString6();
             totalMoney = Integer.parseInt(str);
             player1.money = totalMoney;
             player2.money = totalMoney;
@@ -51,10 +54,20 @@ public class Main_Game
               else if(totalMoney>=1000 && totalMoney<=50000)
                 flag1 = false;
           }
-         System.out.println("请选择2~4位不重复玩家，输入编号即可。"+"\n"+
-                 "(1.钱夫人; 2.阿土伯; 3.孙小美; 4.金贝贝):如输入12"+ "\t");
+         System.out.println("请选择2~4位不重复玩家，输入编号即可。");
+            cop.print("(1.",Color.white,Color.black);
+            cop.print(player1.getName(),player1.color,Color.black);
+            cop.print("  ; 2.",Color.white,Color.black);
+            cop.print(player2.getName(),player2.color,Color.black);
+            cop.print("  ; 3.",Color.white,Color.black);
+            cop.print(player3.getName(),player3.color,Color.black);
+            cop.print("  ; 4.",Color.white,Color.black);
+            cop.print(player4.getName(),player4.color,Color.black);
+            cop.println("  ): 如输入12:",Color.white,Color.black);
 
-                String str = readString6("请输玩家编号：");
+             cop.print("请输入玩家编号：",Color.white,Color.black);
+            
+                String str = readString6();
 
             int[] intarry=new int[str.length()];
                   for(int i=0;i<str.length();i++){
@@ -63,23 +76,22 @@ public class Main_Game
                    for(int i=0;i<intarry.length;i++){
                        if(player1.playerNum == intarry[i]){
                            player1.is_Selected = true;
-                           System.out.print("钱夫人 ");
+                          cop.print(player1.getName() +" ",player1.color,Color.black);
                        }
                        if(player2.playerNum == intarry[i]){
                            player2.is_Selected = true;
-                           System.out.print("阿土伯 ");
+                           cop.print(player2.getName() +" ",player2.color,Color.black);
                        }
                        if(player3.playerNum == intarry[i]){
                            player3.is_Selected = true;
-                             System.out.print("孙小美 ");
+                           cop.print(player3.getName() +" ",player3.color,Color.black);
                        }
                        if(player4.playerNum == intarry[i]){
                            player4.is_Selected = true;
-                             System.out.print("金贝贝 ");
+                           cop.print(player4.getName() +" ",player4.color,Color.black);
                        }
                    }
-                            System.out.println("被选中");
-
+                            cop.println("被选中",Color.white,Color.black);
         //player1.diaplay();
             while(true){
                 if(player1.is_Selected == true){                 
@@ -102,19 +114,15 @@ public class Main_Game
          }
 
     }
-
-
-
-
-
     /*控制台读入数字的方法*/
 
-    private static String readString6(String prompt) {
-        Console console = System.console();
-        if (console == null) {
-            throw new IllegalStateException("不能使用控制台");
-        }
-        return console.readLine(prompt);
+    private static String readString6() throws IOException {
+       String num; 
+       InputStreamReader isr = new InputStreamReader(System.in);
+		// 声明一个isr的缓冲区
+		BufferedReader br = new BufferedReader(isr);
+        num = br.readLine();
+        return num;
     } 
 
     /*控制台读入命令的方法*/

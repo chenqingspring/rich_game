@@ -1,3 +1,4 @@
+import java.awt.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,7 +10,8 @@
 public class Plot {
 
     //public src.src.Coordinate.src.Main_Game mg;
-
+    public Main_Game mg;
+    
 	public  int id = -1;// µØ¿é±àºÅ
 
     public  int area = 0;//µØ¶Î±àºÅ
@@ -29,6 +31,8 @@ public class Plot {
 	public String showstr = "";// ÏÔÊ¾×Ö·û
 
     public int points = 0;
+
+    public ColorOutput cop = new ColorOutput();
 
 
     public Plot(){
@@ -70,10 +74,47 @@ public class Plot {
             break;
 
     }
-        if (!isEnd)// ½áÊø
-			System.out.print(showstr);
-		else
-			System.out.println(showstr);
+        if (!isEnd){// ½áÊø
+            if(owner == 1||showstr == "q"){
+
+                cop.print(showstr, Color.red,Color.black );
+
+            }else if(owner == 2||showstr == "a"){
+                 cop.print(showstr, Color.green,Color.black );
+
+            }else if(owner == 3||showstr == "x"){
+
+                cop.print(showstr, Color.blue,Color.black );
+
+            }else if(owner == 4||showstr == "j"){
+
+                cop.print(showstr, Color.yellow,Color.black );
+
+            }
+            else cop.print(showstr, Color.white,Color.black );
+			//System.out.print(showstr);
+        }
+
+		else{
+            if(owner == 1||showstr == "q"){
+
+                cop.println(showstr, Color.red,Color.black );
+
+            }else if(owner == 2||showstr == "a"){
+                 cop.println(showstr, Color.green,Color.black );
+
+            }else if(owner == 3||showstr == "x"){
+
+                cop.println(showstr, Color.blue,Color.black );
+
+            }else if(owner == 4||showstr == "j"){
+
+                cop.println(showstr, Color.yellow,Color.black );
+
+            }
+            cop.println(showstr, Color.white,Color.black );
+			//System.out.println(showstr);
+        }
     }
 
     }

@@ -1,5 +1,4 @@
-
-
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -21,6 +20,8 @@ public class Player {
 
     public int playerNum = 0;
 
+    public Color color; //颜色输出属性
+
     public boolean is_Selected = false;
     
 	public int money = 10000;// 玩家金钱
@@ -41,10 +42,11 @@ public class Player {
 
     public int robotNum = 0;
 
-    	public Player(String name,String nameForStort,int playerNum) {
+    	public Player(String name,String nameForStort,int playerNum,Color color) {
 		this.name = name;
         this.nameForStort = nameForStort;
         this.playerNum = playerNum;
+        this.color = color;
 	}
 
 
