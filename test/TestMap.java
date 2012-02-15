@@ -36,6 +36,4 @@ public class TestMap {
         assertEquals(63,map.plots[7][0].id);
         assertEquals(69,map.plots[1][0].id);
     }
-
-
 }

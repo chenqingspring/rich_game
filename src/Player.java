@@ -30,6 +30,8 @@ public class Player {
 
     public Coordinate coor = new Coordinate();// 玩家上次位置
 
+    public ColorOutput cop = new ColorOutput();
+
     public int currentDiceNum;
 
 	//public  int position = 0;
@@ -73,8 +75,8 @@ public class Player {
 
     public void showDiceNum(){
 
-         System.out.println(this.getName() + "摇出的骰子点数是 "
-							+ currentDiceNum + " 点");
+         cop.println(this.getName() + "摇出的骰子点数是 "
+							+ currentDiceNum + " 点",this.color,Color.black);
     }
 
     

@@ -41,7 +41,7 @@ public class Main_Game
           while(flag1){
           System.out.println("请输初始资金：");
           String str = readString6();
-            totalMoney = Integer.parseInt(str);
+          totalMoney = Integer.parseInt(str);
             player1.money = totalMoney;
             player2.money = totalMoney;
             player3.money = totalMoney;
@@ -116,12 +116,24 @@ public class Main_Game
     }
     /*控制台读入数字的方法*/
 
-    private static String readString6() throws IOException {
-       String num; 
+    private static String readString6() {
+       String num = null;
+       try{
+
        InputStreamReader isr = new InputStreamReader(System.in);
 		// 声明一个isr的缓冲区
 		BufferedReader br = new BufferedReader(isr);
         num = br.readLine();
+        try{
+            int totalMoney = Integer.parseInt(num);
+        }catch(NumberFormatException n) {
+          System.out.println("对不起，您输入的格式不正确,请重新输入");
+          num = readString6();
+        }
+       } catch(IOException e){
+          System.out.println("对不起，您输入的格式不正确,请重新输入");
+          num = readString6();
+       }
         return num;
     } 
 

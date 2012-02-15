@@ -180,7 +180,7 @@ public class Map {
 
         boolean flag = true;
         while(flag){
-        cop.println(player.getName() +"->待输入命令"+ "\t", player.color,Color.black );
+        cop.println(player.getName() +"->待输入命令(help 提示)"+ "\t", player.color,Color.black );
         //System.out.println(player.getName() +"->待输入命令"+ "\t");
         String s;
         s = input(true);
@@ -237,7 +237,7 @@ public class Map {
 		} catch (IOException ex) {
 			// 程序IO异常处理
             if(num1.equals("help")){
-               cop.println("roll           掷骰子命令，行走1~6步。步数由随即算法产生",Color.white, Color.black);
+                cop.println("roll           掷骰子命令，行走1~6步。步数由随即算法产生",Color.white, Color.black);
                 System.out.println("block n        玩家拥有路障后，可将路障放置到离当前位置前后10步的距离，任一玩家经过路障，都将被拦截。该道具一次有效。n 前后的相对距离，负数表示后方");
                 System.out.println("bomb n         可将路障放置到离当前位置前后10步的距离，任一玩家经过在该位置，将被炸伤，送往医院，住院三天。n 前后的相对距离，负数表示后方");
                 System.out.println("robot          使用该道具，可清扫前方路面上10步以内的其它道具，如炸弹、路障");

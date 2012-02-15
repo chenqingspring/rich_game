@@ -2,6 +2,8 @@
 import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 
+import java.awt.*;
+
 /**
  * Created by IntelliJ IDEA.
  * User: spring
@@ -14,7 +16,7 @@ public class TestPlayer {
     @Test
     public void test_player_walk_at_begin(){
 
-        Player player = new Player("钱夫人","q",1);
+        Player player = new Player("钱夫人","q",1, Color.red);
 
         player.coor.position = 0;  //player在起始位置
         player.roll_the_Dice();
@@ -33,7 +35,7 @@ public class TestPlayer {
          @Test
      public void test_player_walk_at_middle(){
 
-        Player player = new Player("钱夫人","q",1);
+        Player player = new Player("钱夫人","q",1, Color.red);
 
         player.coor.position = 30;  //player在起始位置
         player.roll_the_Dice();
@@ -52,7 +54,7 @@ public class TestPlayer {
       @Test
      public void test_player_walk_at_end(){
 
-        Player player = new Player("钱夫人","q",1);
+        Player player = new Player("钱夫人","q",1, Color.red);
 
         player.coor.position = 69;  //player在起始位置
         player.roll_the_Dice();
