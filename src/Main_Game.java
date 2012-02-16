@@ -39,7 +39,7 @@ public class Main_Game
           boolean flag1 = true;
           int totalMoney = 10000;
           while(flag1){
-          System.out.println("请输初始资金：");
+          System.out.println("请输初始资金：   ");
           String str = readString6();
           totalMoney = Integer.parseInt(str);
             player1.money = totalMoney;
@@ -76,19 +76,19 @@ public class Main_Game
                    for(int i=0;i<intarry.length;i++){
                        if(player1.playerNum == intarry[i]){
                            player1.is_Selected = true;
-                          cop.print(player1.getName() +" ",player1.color,Color.black);
+                          cop.print(player1.getName() +"  ",player1.color,Color.black);
                        }
                        if(player2.playerNum == intarry[i]){
                            player2.is_Selected = true;
-                           cop.print(player2.getName() +" ",player2.color,Color.black);
+                           cop.print(player2.getName() +"  ",player2.color,Color.black);
                        }
                        if(player3.playerNum == intarry[i]){
                            player3.is_Selected = true;
-                           cop.print(player3.getName() +" ",player3.color,Color.black);
+                           cop.print(player3.getName() +"  ",player3.color,Color.black);
                        }
                        if(player4.playerNum == intarry[i]){
                            player4.is_Selected = true;
-                           cop.print(player4.getName() +" ",player4.color,Color.black);
+                           cop.print(player4.getName() +"  ",player4.color,Color.black);
                        }
                    }
                             cop.println("被选中",Color.white,Color.black);
