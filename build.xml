@@ -25,6 +25,10 @@
         <javac srcdir="${src}" destdir="${dest}" includeantruntime="false">
         	  <classpath refid="lib_classpath"/>
         </javac>
+        <javac srcdir="${test}" destdir="${dest}" includeantruntime="false">
+        	  <classpath refid="lib_classpath"/>
+        </javac>
+        
     </target>
     
 
@@ -32,18 +36,12 @@
                  <mkdir dir="${report.xml}" />  
                  <mkdir dir="${report.html}" />  
                    <junit printsummary="true">
-
-                            <classpath >
-
-                              <pathelement path="${dest}"/>
-
-                             <fileset dir="${lib}">
-
-                             <include name=".jar"/>
-
-                            </fileset>
-
-                            </classpath>
+                       <classpath >
+                         <pathelement path="${dest}"/>
+                           <fileset dir="${lib}">
+                           <include name="**/*.jar"/>
+                           </fileset>
+                       </classpath>
 
          <formatter type="xml"/>
 
