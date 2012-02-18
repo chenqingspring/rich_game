@@ -12,9 +12,13 @@ import java.awt.*;
  */
 public class Map {
 
-    public  Plot plots[][];// 地块类型
+    public   Plot plots[][];// 地块类型
 
-    public static ColorOutput cop = new ColorOutput();
+    public  static Tool tool = new Tool();
+
+    public static  Gift gift = new  Gift();
+
+    public  static ColorOutput cop = new ColorOutput();
 
     public Map() {
 		plots = new Plot[8][29];
@@ -169,7 +173,7 @@ public class Map {
                         plots[i][j].showstr = player.nameForStort;
                         Render();
                         plots[i][j].type = temp_type;
-                        i = 8;j = 29;
+                           //i = 8;j = 29;
                 }
 			}
 		}
@@ -188,23 +192,73 @@ public class Map {
         player.roll_the_Dice();
         player.showDiceNum();
         Render_after_player_walks(player);
-        cop.println("是否购买该处空地，"+ plots[player.coor.x][player.coor.y].price +"元（Y/N）"+ "\t", player.color,Color.black);
+        if(plots[player.coor.x][player.coor.y].type ==1){
+          if(plots[player.coor.x][player.coor.y].owner==0||plots[player.coor.x][player.coor.y].owner== player.playerNum){
+            if(plots[player.coor.x][player.coor.y].roomLevel<=3){
+            cop.println("是否购买(升级)该处空地，"+ plots[player.coor.x][player.coor.y].price +"元（Y/N）"+ "\t", player.color,Color.black);
             s = input(true);
             if(s.equals("Y")){
                   player.money -= plots[player.coor.x][player.coor.y].price;   //减去player1的资产
                   plots[player.coor.x][player.coor.y].owner = player.playerNum;//把地归为playerNum所有
+                  plots[player.coor.x][player.coor.y].change +=  plots[player.coor.x][player.coor.y].price/2;
+                  //if(plots[player.coor.x][player.coor.y].roomLevel<=3)
+                     plots[player.coor.x][player.coor.y].roomLevel ++;
+                     plots[player.coor.x][player.coor.y].showstr = String.valueOf(plots[player.coor.x][player.coor.y].roomLevel);
+                
                 cop.println("地块("+ plots[player.coor.x][player.coor.y].id + ")被"+player.getName()+"占有" + "\t", player.color,Color.black);
                 cop.println("系统扣除"+player.getName()+"相应的资金" + plots[player.coor.x][player.coor.y].price+"元" + "\t", player.color,Color.black);
                 flag = false;
             }
             else if (s.equals("N")){
-                 cop.println(player.getName()+"放弃占有地块（" + plots[player.coor.x][player.coor.y].id+ "）\t", player.color,Color.black);
+                 cop.println(player.getName()+"放弃占有（升级）地块（" + plots[player.coor.x][player.coor.y].id+ "）\t", player.color,Color.black);
                  flag = false;
             } else if (s.equals("quit")){
                   System.out.println("游戏已退出");
                   System.exit(0);
               }
+            }else
+                cop.println("摩天楼已升满级", player.color,Color.black);
+            }else {
+            player.money -= plots[player.coor.x][player.coor.y].change;
+            cop.println("走到别人地块，扣除相应金钱"+plots[player.coor.x][player.coor.y].change, player.color,Color.black);//判断土地所有者是谁
+            plots[player.coor.x][player.coor.y].type = 1;
+            plots[player.coor.x][player.coor.y].showstr = String.valueOf(plots[player.coor.x][player.coor.y].roomLevel);
+            flag = false;
+        }
+        }else if(plots[player.coor.x][player.coor.y].type ==0){
 
+            cop.println(player.getName()+"走到了起点", player.color,Color.black);
+            flag = false;
+
+
+        }else if(plots[player.coor.x][player.coor.y].type ==2){
+            cop.println(player.getName()+"走到了医院", player.color,Color.black);
+            flag = false;
+        }else if(plots[player.coor.x][player.coor.y].type ==3){
+            cop.println(player.getName()+"欢迎光临道具屋， 请选择您所需要的道具：", player.color,Color.black);
+            cop.println("1.路障 50 #；2.机器娃娃 50 空格；3.炸弹 50 @", player.color,Color.black);
+            tool.getTool();
+            flag = false;
+        }else if(plots[player.coor.x][player.coor.y].type ==4){
+            cop.println(player.getName()+"欢迎光临礼品屋，请选择一件您 喜欢的礼品：", player.color,Color.black);
+            cop.println("1.奖金2000；2.点数200；3.神符", player.color,Color.black);
+            gift.getGift();
+            flag = false;
+        }else if(plots[player.coor.x][player.coor.y].type ==5){
+
+           cop.println("走到监狱，扣留两天", player.color,Color.black);
+
+        }else if(plots[player.coor.x][player.coor.y].type ==6){
+
+            cop.println("欢迎来到魔法屋！可惜咱无魔法。。", player.color,Color.black);
+
+        }else if(plots[player.coor.x][player.coor.y].type ==7){
+
+            player.points += plots[player.coor.x][player.coor.y].points;
+
+            cop.println(player.getName()+"获得点数："+plots[player.coor.x][player.coor.y].points, player.color,Color.black);
+
+        }
             }else if (s.equals("quit")){
              System.out.println("游戏已退出");
              System.exit(0);
@@ -212,7 +266,6 @@ public class Map {
              player.diaplay();
              flag = true;
             }
-
         }
     }
 

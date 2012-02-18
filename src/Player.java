@@ -44,6 +44,10 @@ public class Player {
 
     public int robotNum = 0;
 
+    public Player(){
+        
+    }
+
     	public Player(String name,String nameForStort,int playerNum,Color color) {
 		this.name = name;
         this.nameForStort = nameForStort;

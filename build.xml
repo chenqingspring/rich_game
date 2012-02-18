@@ -45,18 +45,14 @@
                            </fileset>
                        </classpath>
 
-         <formatter type="xml"/>
+                      <formatter type="xml"/>
+                      <batchtest fork="yes" todir="${report.xml}">
+                      <fileset dir="${test}">
+                      <include name="Test**.java"/>
 
-
-         <batchtest fork="yes" todir="${report.xml}">
-
-         <fileset dir="${test}">
-
-             <include name="Test**.java"/>     
-
-         </fileset>
-         </batchtest>
-         </junit>
+                     </fileset>
+                     </batchtest>
+                   </junit>
          
          <junitreport todir="${report.html}">  
            <fileset dir="${report.xml}">  

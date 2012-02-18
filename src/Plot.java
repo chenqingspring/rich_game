@@ -10,7 +10,6 @@ import java.awt.*;
 public class Plot {
 
     //public src.src.Coordinate.src.Main_Game mg;
-    public Main_Game mg;
     
 	public  int id = -1;// 地块编号
 
@@ -24,11 +23,11 @@ public class Plot {
 
 	public  int price = 0;// 地块价格
 
-	public  int roomLevel = 0;// 房屋等级
+	public  int roomLevel = -1;// 房屋等级
 
 	public  int change;// 过路买地价格
 
-	public String showstr = "";// 显示字符
+	public String showstr = "0";// 显示字符
 
     public int points = 0;
 
@@ -46,7 +45,7 @@ public class Plot {
 			showstr = "S";
 			break;
 		case 1:
-			showstr = "0";
+			showstr = this.showstr;
 			break;
 		case 2:
 			showstr = "H";
@@ -75,7 +74,7 @@ public class Plot {
 
     }
         if (!isEnd){// 结束
-            if(owner == 1||showstr == "q"){
+            if(owner == 1||showstr == "q"){    //判断土地所有者，颜色输出
 
                 cop.print(showstr, Color.red,Color.black );
 

@@ -16,7 +16,7 @@ public class Main_Game
     public static Map map = new Map();
 
 	public static Plot plots = new Plot();
-
+                                                                                                     
     public static ColorOutput cop = new ColorOutput();
 
     public static Player player1 = new Player("«Æ∑Ú»À","q",1,Color.red);
