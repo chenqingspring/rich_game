@@ -43,6 +43,7 @@ public class Player {
     public  int roadblockNum = 0;
 
     public int robotNum = 0;
+    private static final int PLOT_TOTAL_COUNT = 69;
 
     public Player(){
         
@@ -69,16 +70,13 @@ public class Player {
 
     public void roll_the_Dice(){
         Random random = new Random();
-
         int DiceNum =  Math.abs(random.nextInt(6) + 1);
-
          currentDiceNum = DiceNum;
     }
 
 
 
     public void showDiceNum(){
-
          cop.println(this.getName() + "摇出的骰子点数是 "
 							+ currentDiceNum + " 点",this.color,Color.black);
     }
@@ -87,15 +85,15 @@ public class Player {
     public void walk(){
 
         int walkDist = currentDiceNum;
-        if(coor.position < 69)
+        if(coor.position < PLOT_TOTAL_COUNT)
             coor.position =  coor.position +  walkDist;
-        else if(coor.position >= 69)
-            coor.position = 69 - coor.position +  walkDist;
+        else if(coor.position >= PLOT_TOTAL_COUNT)
+            coor.position = PLOT_TOTAL_COUNT - coor.position +  walkDist;
 	}
 
 
 
-    public void diaplay() {
+    public void diaplayStatus() {
 		System.out.println("当前玩家:");
 		System.out.println(name + "\t");
 		System.out.println(name + "的金钱:       " + "\t" + money);
@@ -104,10 +102,5 @@ public class Player {
         System.out.println(name + "的炸弹数:     " + "\t" + bombNum);
         System.out.println(name + "的路障数:     " + "\t" + roadblockNum);
         System.out.println(name + "的机器娃娃数: " + "\t" + robotNum);
-
 	}
-
-
-    
-
 }

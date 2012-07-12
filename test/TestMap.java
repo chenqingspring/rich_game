@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 
 /**
@@ -15,9 +16,8 @@ public class TestMap {
     public void test_plot_name(){
 
         Map map = new Map();
-        map.Init();
-        map.Render();
-        assertEquals("S",map.plots[0][0].showstr);
+        map.init();
+        assertEquals("S",map.getIConByPosition(0,0));
         assertEquals("H",map.plots[0][14].showstr);
         assertEquals("T",map.plots[0][28].showstr);
         assertEquals("G",map.plots[7][28].showstr);
@@ -27,9 +27,8 @@ public class TestMap {
 
     @Test
     public void test_plot_id(){
-        Map map = new Map();
-        map.Init();
-        map.Render();
+        Map map = new Map();;
+        map.init();
         assertEquals(0,map.plots[0][0].id);
         assertEquals(28,map.plots[0][28].id);
         assertEquals(35,map.plots[7][28].id);

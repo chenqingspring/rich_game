@@ -38,7 +38,58 @@ public class Plot {
     }
     
     public void drawPlot(boolean isEnd){
+        showName();
+        if (!isEnd){// 结束
+            ifNotEnd();
+        }
+		else{
+            ifEnd();
+        }
+    }
 
+    private void ifEnd() {
+        
+        if(owner == 1|| showstr.equals("q")){
+
+            cop.println(showstr, Color.red,Color.black );
+
+        }else if(owner == 2|| showstr.equals("a")){
+             cop.println(showstr, Color.green,Color.black );
+
+        }else if(owner == 3|| showstr.equals("x")){
+
+            cop.println(showstr, Color.blue,Color.black );
+
+        }else if(owner == 4|| showstr.equals("j")){
+
+            cop.println(showstr, Color.yellow,Color.black );
+
+        }
+        cop.println(showstr, Color.white,Color.black );
+        //System.out.println(showstr);
+    }
+
+    private void ifNotEnd() {
+        if(owner == 1|| showstr.equals("q")){    //判断土地所有者，颜色输出
+
+            cop.print(showstr, Color.red,Color.black );
+
+        }else if(owner == 2|| showstr.equals("a")){
+             cop.print(showstr, Color.green,Color.black );
+
+        }else if(owner == 3|| showstr.equals("x")){
+
+            cop.print(showstr, Color.blue,Color.black );
+
+        }else if(owner == 4|| showstr.equals("j")){
+
+            cop.print(showstr, Color.yellow,Color.black );
+
+        }
+        else cop.print(showstr, Color.white,Color.black );
+    }
+
+    private void showName() {
         switch (type) {
 
 		case 0:
@@ -73,47 +124,6 @@ public class Plot {
             break;
 
     }
-        if (!isEnd){// 结束
-            if(owner == 1||showstr == "q"){    //判断土地所有者，颜色输出
-
-                cop.print(showstr, Color.red,Color.black );
-
-            }else if(owner == 2||showstr == "a"){
-                 cop.print(showstr, Color.green,Color.black );
-
-            }else if(owner == 3||showstr == "x"){
-
-                cop.print(showstr, Color.blue,Color.black );
-
-            }else if(owner == 4||showstr == "j"){
-
-                cop.print(showstr, Color.yellow,Color.black );
-
-            }
-            else cop.print(showstr, Color.white,Color.black );
-			//System.out.print(showstr);
-        }
-
-		else{
-            if(owner == 1||showstr == "q"){
-
-                cop.println(showstr, Color.red,Color.black );
-
-            }else if(owner == 2||showstr == "a"){
-                 cop.println(showstr, Color.green,Color.black );
-
-            }else if(owner == 3||showstr == "x"){
-
-                cop.println(showstr, Color.blue,Color.black );
-
-            }else if(owner == 4||showstr == "j"){
-
-                cop.println(showstr, Color.yellow,Color.black );
-
-            }
-            cop.println(showstr, Color.white,Color.black );
-			//System.out.println(showstr);
-        }
     }
 
-    }
+}
